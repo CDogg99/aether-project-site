@@ -13,3 +13,11 @@ h2{
 .center{
     text-align: center;
 }
+
+.blue{
+    color: blue;
+}
+
+.icon{
+    font-size: 24px;
+}
