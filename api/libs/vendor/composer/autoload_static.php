@@ -27,6 +27,10 @@ class ComposerStaticInitd8d58d844ad53b37f04b11a237bd8e53
         array (
             'FastRoute\\' => 10,
         ),
+        'A' => 
+        array (
+            'Abraham\\TwitterOAuth\\' => 21,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -45,6 +49,10 @@ class ComposerStaticInitd8d58d844ad53b37f04b11a237bd8e53
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'Abraham\\TwitterOAuth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/abraham/twitteroauth/src',
         ),
     );
 
