@@ -17,6 +17,9 @@
                 else if($status->errors[0]->code == 170){
                     return json_encode("Body input empty.");
                 }
+                else{
+                    return json_encode("An unknown error has occurred.");
+                }
             }
             $this->id_str = $status->id;
             $this->insertTweet();
