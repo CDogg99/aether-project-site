@@ -16,10 +16,10 @@
     $config['db']['password'] = "";
     $config['db']['dbname'] = "aether";
 
-    $config['twitter']['consumer_key'] = "";
-    $config['twitter']['consumer_secret'] = "";
-    $config['twitter']['access_token'] = "";
-    $config['twitter']['access_token_secret'] = "";
+    $config['twitter']['consumer_key'] = "ozbRrnVZTipPbHGz02YKcZ8CO";
+    $config['twitter']['consumer_secret'] = "GB3hVYW0c3QDknn96tBCxtnjzGHU85aT7rGSsbVJhjUEmyq7ei";
+    $config['twitter']['access_token'] = "821437608316325888-KgUt9HaXQ70kzpTmKnVCegdwBrIdwi1";
+    $config['twitter']['access_token_secret'] = "DU3CHvwd098Ob3nAwsdTeOnb2fAO4QnuO25mpnUgWJhNh";
 
     $app = new \Slim\App(["settings" => $config]);
 
