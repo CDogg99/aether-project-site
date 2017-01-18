@@ -16,10 +16,10 @@
     $config['db']['password'] = "";
     $config['db']['dbname'] = "aether";
 
-    $config['twitter']['consumer_key'] = "ozbRrnVZTipPbHGz02YKcZ8CO";
-    $config['twitter']['consumer_secret'] = "GB3hVYW0c3QDknn96tBCxtnjzGHU85aT7rGSsbVJhjUEmyq7ei";
-    $config['twitter']['access_token'] = "821437608316325888-KgUt9HaXQ70kzpTmKnVCegdwBrIdwi1";
-    $config['twitter']['access_token_secret'] = "DU3CHvwd098Ob3nAwsdTeOnb2fAO4QnuO25mpnUgWJhNh";
+    $config['twitter']['consumer_key'] = "";
+    $config['twitter']['consumer_secret'] = "";
+    $config['twitter']['access_token'] = "";
+    $config['twitter']['access_token_secret'] = "";
 
     $app = new \Slim\App(["settings" => $config]);
 
@@ -37,29 +37,24 @@
     };
     $container["db"] = function ($c) {
        $db = $c["settings"]["db"];
+       //Will need to replace or handle the below "or die" statements
        $connection = new mysqli($db["server"],$db["username"],$db["password"]) or die("Failed to connect to the server.");
        mysqli_select_db($connection,$db["dbname"]) or die("Failed to connect to the database.");
        return $connection;
    };
 
     //Tweets endpoints
-    //POST
-    $app->post('/tweets',function(Request $request, Response $response){
+    //GET
+    $app->get('/tweets/update',function(Request $request, Response $response){
         $conn = $this->twitter;
         if($conn == "Failed to connect to Twitter API."){
             $response->getBody()->write(json_encode($conn));
             return $response;
         }
-        $data = $request->getParsedBody();
-        if(!isset($data["body"])){
-            $response->getBody()->write(json_encode("Missing body input."));
-            return $response;
-        }
         $tweet = new Tweets();
-        $tweet->body = $data["body"];
         $tweet->twitterConn = $conn;
         $tweet->dbConn = $this->db;
-        $response->getBody()->write($tweet->create());
+        $response->getBody()->write($tweet->checkForUpdate());
         return $response;
     });
 

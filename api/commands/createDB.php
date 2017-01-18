@@ -14,6 +14,7 @@
     $sql .="CREATE TABLE IF NOT EXISTS tweets(
                 id varchar(64) CHARACTER SET utf8 NOT NULL,
                 body varchar(140) CHARACTER SET utf8 NOT NULL,
+                creation datetime NOT NULL,
                 PRIMARY KEY (id)
             ) CHARACTER SET utf8; ";
 
