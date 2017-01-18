@@ -45,7 +45,7 @@
 
     //Tweets endpoints
     //GET
-    $app->get('/tweets/update',function(Request $request, Response $response){
+    $app->get('/update',function(Request $request, Response $response){
         $conn = $this->twitter;
         if($conn == "Failed to connect to Twitter API."){
             $response->getBody()->write(json_encode($conn));
