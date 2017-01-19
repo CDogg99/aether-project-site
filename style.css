@@ -29,6 +29,7 @@ h2{
 	background:#dedede;
 	flex-basis:15%;
 	display:flex;
+	font-size:250%;
 }
 
 #mapContainer{
@@ -56,4 +57,5 @@ h2{
 	display:flex;
 	align-items:center;
 	justify-content:center;
+	border-left: 1px solid rgba(0,0,0,.12);
 }
