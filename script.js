@@ -9,3 +9,7 @@ $(document).ready(function(){
             $("#info").toggle();
         });
 });
+
+function toggleID(id){
+	$("#"+id).toggle();
+}
