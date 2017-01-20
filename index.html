@@ -5,6 +5,7 @@
         <title>Project Aether</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--<script src="https://use.fontawesome.com/a637ae048f.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
@@ -19,7 +20,12 @@
 							lat: 29.775055,
 							lng:-95.809635
 						},
-						mapTypeId: 'terrain'
+						mapTypeId: 'terrain',
+						mapTypeControl: true,
+						mapTypeControlOptions: {
+							style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+							position: google.maps.ControlPosition.TOP_RIGHT
+						}
 					});
 
 				// Define the LatLng coordinates for the polygon's path.
@@ -56,29 +62,36 @@
     </head>
     <body>
         <!--Placing this here so that it is easily accessible in the future-->
-		<div id="mainContent">
-			<div id="mapContainer">
-
+		
+		<div id="sidebar">
+			<div id="logo">
+				Aether Project
+			</div>
+			<div id="twitterContainer">
+			<a class="twitter-timeline" data-width="400" data-chrome="nofooter" href="https://twitter.com/Real_CSS_Tricks">Tweets by Aether_Project</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
 			<div id="infoContainer">
 				<div class="kard">
-					418.3<span class="unit">&#160ft.</span> 
+					<p>(-95.34, 24.67)</p>
 				</div>
 				<div class="kard">
-					418.3 <span class="unit">&#160ft.</span> 
+					<p>418.3<span class="unit">&#160ft. </span> </p>
 				</div>
 				<div class="kard">
-					418.3 <span class="unit">&#160ft.</span> 
+					<p>19 <span class="unit">&#160&#176C </span> </p>
 				</div>
 				<div class="kard">
-					418.3 <span class="unit">&#160ft.</span> 
-				</div>
-				<div class="kard">
-					418.3 <span class="unit">&#160ft.</span> 
+					<p>0.977 <span class="unit">&#160atm. </span> </p>
 				</div>
 			</div>
 		</div>
-		<div id="sidebar">
-        <a class="twitter-timeline" data-width="500"  data-chrome="nofooter" href="https://twitter.com/aether_project">Tweets by Aether_Project</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<div id="mainContent">
+			<div id="sidebarButton">
+			<i id="arrowIcon" class="material-icons">keyboard_arrow_left</i>
+			</div>
+			<div id="mapContainer">
+
+			</div>
+			
 		</div>
 </html>
