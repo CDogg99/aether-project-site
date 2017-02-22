@@ -21,6 +21,8 @@
                 id varchar(16) CHARACTER SET utf8 NOT NULL,
                 latitude decimal(7,5) NOT NULL,
                 longitude decimal(8,5) NOT NULL,
+                unixTime varchar(64) CHARACTER SET utf8 NOT NULL,
+                creation datetime NOT NULL,
                 source varchar(24) CHARACTER SET utf8 NOT NULL,
                 PRIMARY KEY(id)
             ) CHARACTER SET utf8; ";

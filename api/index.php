@@ -18,10 +18,10 @@
     $config['db']['dbname'] = "aether";
 
     //Never push with the following variables filled
-    $config['twitter']['consumer_key'] = "YyQNe0xjTt1oTSa18rHMcjM4H";
-    $config['twitter']['consumer_secret'] = "WxtCTgUAaRG2PVFLdHGW9DxxXs38hDgfN8mjsehgntWcOiAXgf";
-    $config['twitter']['access_token'] = "821437608316325888-6AmHvvjXpulsPxSEwc8AOKId0qDKWMM";
-    $config['twitter']['access_token_secret'] = "u3TAFnGbON8yjkUpAHarNIoAgsetD9NEGICVqsJN69r8S";
+    $config['twitter']['consumer_key'] = "YlBJJfYG1iFEBB9UITMLZAEC1";
+    $config['twitter']['consumer_secret'] = "5bTHZCA5WjMyIlaFpyFwvx6iMGuLLG9qa3IRxg1hCj9e363Orf";
+    $config['twitter']['access_token'] = "821437608316325888-VCW7QVvDZorhslL2GzPA4hf0GH9Jw4v";
+    $config['twitter']['access_token_secret'] = "DidYjUg3fvcVIxkNYMtiSfRRwcoTGEDuoj38BTjA8v8xh";
 
     $app = new \Slim\App(["settings" => $config]);
 
@@ -68,7 +68,7 @@
         $response->getBody()->write(json_encode("tmp1"));
         return $response;
     });
-    
+
     $app->get('/data',function(Request $request, Response $response){
         $dbConn = $this->db;
         if(is_string($dbConn)){
