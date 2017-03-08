@@ -5,13 +5,15 @@
         public $id = null;
         public $latitude = null;
         public $longitude = null;
+        public $unixTime = null;
+        public $creation = null;
         public $source = null;
 
         public $dbConn = null;
 
         function retrieve(){
-            $this->pullSpotTraceData();
-            $sql = "SELECT * FROM data";
+            $this->checkForUpdate();
+            $sql = "SELECT * FROM data ORDER BY id DESC";
             $result = $this->dbConn->query($sql);
             $array = array();
             while($r = $result->fetch_assoc()){
@@ -20,17 +22,37 @@
             return $array;
         }
 
-        function pullSpotTraceData(){
-            //https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/1aHCJxvC2zDtW2JabdY7coIjy4VbsxY8r/message.json?feedPassword=megatron
+        function checkForUpdate(){
             $sql = "SELECT * FROM data";
             $result = $this->dbConn->query($sql);
             if($result->num_rows == 0){
-                $data = file_get_contents('');
-                $data = json_decode($data);
-                return $data[0][1];
+                $this->pullSpotTraceData();
             }
             else{
+                //Create separate table later to track updates from each source instead
+                //of relying upon the creation time of the actual data retrieved
+                $timestamp = strtotime($result->fetch_assoc()["creation"]);
+                $datetimeOfRecent = new DateTime(date("Y-m-d H:i:s",$timestamp));
+                $currentTime = new DateTime(date("Y-m-d H:i:s"));
+                $diff = $datetimeOfRecent->diff($currentTime);
+                if($diff->i >= 5){
+                    $this->pullSpotTraceData();
+                }
+            }
+        }
 
+        function pullSpotTraceData(){
+            $data = file_get_contents('https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/1aHCJxvC2zDtW2JabdY7coIjy4VbsxY8r/message.json?feedPassword=megatron');
+            $data = json_decode($data);
+            if(isset($data->response->errors)){
+                return;
+            }
+            $response = $data->response->feedMessageResponse;
+            $messages = $response->messages->message;
+            for($i = 0; $i < sizeof($messages); $i++){
+                $sql = "INSERT IGNORE INTO data (id, latitude, longitude, unixTime, creation, source)
+                VALUES ({$messages[$i]->id}, {$messages[$i]->latitude}, {$messages[$i]->longitude}, {$messages[$i]->unixTime}, NOW(), 'spottrace')";
+                $result = $this->dbConn->query($sql);
             }
         }
 
