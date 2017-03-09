@@ -26,6 +26,11 @@
                 source varchar(24) CHARACTER SET utf8 NOT NULL,
                 PRIMARY KEY(id)
             ) CHARACTER SET utf8; ";
+    $sql .="CREATE TABLE IF NOT EXISTS sources(
+                id varchar(24) CHARACTER SET utf8 NOT NULL,
+                lastUpdate datetime,
+                PRIMARY KEY(id)
+            ) CHARACTER SET utf8; ";
 
     $result = mysqli_multi_query($conn,$sql);
     if (!$result){

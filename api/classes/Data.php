@@ -12,7 +12,7 @@
         public $dbConn = null;
 
         function retrieve(){
-            $this->checkForUpdate();
+            return $this->checkForUpdate();
             $sql = "SELECT * FROM data ORDER BY id DESC";
             $result = $this->dbConn->query($sql);
             $array = array();
@@ -23,20 +23,25 @@
         }
 
         function checkForUpdate(){
-            $sql = "SELECT * FROM data";
+            $sql = "SELECT * FROM sources";
             $result = $this->dbConn->query($sql);
             if($result->num_rows == 0){
-                $this->pullSpotTraceData();
+                $sql = "INSERT INTO sources (id) VALUES ('spottrace');INSERT INTO sources (id) VALUES ('aprs');";
+                $this->dbConn->query($sql);
             }
-            else{
-                //Create separate table later to track updates from each source instead
-                //of relying upon the creation time of the actual data retrieved
-                $timestamp = strtotime($result->fetch_assoc()["creation"]);
-                $datetimeOfRecent = new DateTime(date("Y-m-d H:i:s",$timestamp));
-                $currentTime = new DateTime(date("Y-m-d H:i:s"));
-                $diff = $datetimeOfRecent->diff($currentTime);
-                if($diff->i >= 5){
-                    $this->pullSpotTraceData();
+            $sql = "SELECT * FROM sources";
+            $result = $this->dbConn->query($sql);
+            $array = [];
+            while($row = $result->fetch_assoc()){
+                $array[] = $row;
+            }
+            foreach($array as $value){
+                return $value["id"];
+                switch($value["id"]){
+                    case 'spottrace':
+                        break;
+                    case 'aprs':
+                        break;
                 }
             }
         }
