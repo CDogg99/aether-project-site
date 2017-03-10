@@ -26,8 +26,9 @@
             $sql = "SELECT * FROM sources";
             $result = $this->dbConn->query($sql);
             if($result->num_rows == 0){
-                $sql = "INSERT INTO sources (id) VALUES ('spottrace');INSERT INTO sources (id) VALUES ('aprs');";
-                $this->dbConn->query($sql);
+                $sql = "INSERT INTO sources (id) VALUES ('spottrace');";
+                $sql .= "INSERT INTO sources (id) VALUES ('aprs');";
+                $this->dbConn->multi_query($sql);
             }
             $sql = "SELECT * FROM sources";
             $result = $this->dbConn->query($sql);
@@ -36,11 +37,35 @@
                 $array[] = $row;
             }
             foreach($array as $value){
-                return $value["id"];
                 switch($value["id"]){
                     case 'spottrace':
+                        if($value["lastUpdate"]==null){
+                            $this->pullSpotTraceData();
+                            $sql = "UPDATE sources SET lastUpdate=NOW() WHERE id='spottrace'";
+                            $this->dbConn->query($sql);
+                        }
+                        else{
+                            $timestamp = strtotime($value["lastUpdate"]);
+                            $datetimeOfRecent = new DateTime(date("Y-m-d H:i:s",$timestamp));
+                            $currentTime = new DateTime(date("Y-m-d H:i:s"));
+                            $diff = $datetimeOfRecent->diff($currentTime);
+                            if($diff->i >= 3){
+                                $this->pullSpotTraceData();
+                                $sql = "UPDATE sources SET lastUpdate=NOW() WHERE id='spottrace'";
+                                $this->dbConn->query($sql);
+                            }
+                            else {
+                                return "too early";
+                            }
+                        }
                         break;
                     case 'aprs':
+                        if($value["lastUpdate"]==null){
+                            $this->pullAPRSData();
+                        }
+                        else{
+                            return "";
+                        }
                         break;
                 }
             }
@@ -59,6 +84,10 @@
                 VALUES ({$messages[$i]->id}, {$messages[$i]->latitude}, {$messages[$i]->longitude}, {$messages[$i]->unixTime}, NOW(), 'spottrace')";
                 $result = $this->dbConn->query($sql);
             }
+        }
+
+        function pullAPRSData(){
+            return "";
         }
 
     }
