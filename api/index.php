@@ -8,6 +8,7 @@
     //Load class files
     require("classes/Tweets.php");
     require("classes/Data.php");
+    require("classes/Sources.php");
 
     $config['displayErrorDetails'] = true;
     $config['addContentLengthHeader'] = false;
