@@ -48,13 +48,18 @@ function initMap() {
     });
 }
 
-var mapData;
+var mapData = [];
+//Temporary
+mapData[0] = {
+	latitude: 29.764443,
+	longitude: -95.390337
+};
 function retrieveMapData(){
 	$.ajax({
 		type: "GET",
 		url: "api/data",
 		success: function(data){
-			mapData = JSON.parse(data);
+			//mapData = JSON.parse(data);
 			initMap();
 		}
 	});
