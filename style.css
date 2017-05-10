@@ -7,8 +7,21 @@ html, body{
 }
 
 a .fa-twitter{
+	display: none;
 	margin-left: 5px;
 	color: #1da1f2;
+}
+
+#logo .imgContainer{
+	background-image: url("images/logo.png");
+	display: block;
+	width: 23%;
+	height: 100%;
+	flex-basis: 20%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin: 0;
 }
 
 @media (max-width: 700px) {
@@ -22,12 +35,21 @@ a .fa-twitter{
     	height:100%;
     }
 
+	a .fa-twitter{
+		display: inline-block;
+		font-size: 1em;
+	}
+
 	#sidebar{
 		height: 40%;
 	}
 
 	#sidebar #twitterContainer{
 		display: none;
+	}
+
+	#logo .imgContainer{
+		flex-basis: 10%;
 	}
 }
 
@@ -69,10 +91,13 @@ a .fa-twitter{
 #logo{
 	flex-basis:10%;
 	display:flex;
-	justify-content:center;
+	justify-content: space-around;
 	align-items:center;
-	font-size:175%;
-	background:#ffffff;
+	font-size:135%;
+	background:black;
+	color: white;
+	letter-spacing: 3px;
+	font-weight: 700;
 }
 
 #twitterContainer{
