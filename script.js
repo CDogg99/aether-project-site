@@ -1,20 +1,7 @@
-$(document).ready(function(){
-	$("#sidebarButton").on("click",function(){
-		toggleID("sidebar");
-		if(document.getElementById("arrowIcon").innerHTML=="keyboard_arrow_left")
-			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_right";
-		else
-			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_left";
-	});
-	//checkForUpdate();
-	//Queries API to check for new status updates every 60 seconds
-	//setInterval(checkForUpdate, 60000);
-});
-
 var map, currentPosition, path;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('mapContainer'), {
-		zoom: 12,
+		zoom: 14,
 		center: {
 			//Centers on the most recent position
 			lat: parseFloat(mapData[0].latitude),
@@ -26,13 +13,14 @@ function initMap() {
 			position: google.maps.ControlPosition.TOP_RIGHT
 		}
 	});
+
 	//Places marker at most recent location
 	currentPosition = new google.maps.Marker({
 		position: {lat: parseFloat(mapData[0].latitude), lng: parseFloat(mapData[0].longitude)},
-		animation: google.maps.Animation.BOUNCE,
 		title: "Current Position",
 		map: map
 	});
+
 	//Loads positions into pathArray and displays balloon route
 	var pathArray = [];
 	for(var i = 0; i < mapData.length; i++){
@@ -51,8 +39,8 @@ function initMap() {
 var mapData = [];
 //Temporary
 mapData[0] = {
-	latitude: 29.764443,
-	longitude: -95.390337
+	latitude: 29.7858,
+	longitude: -95.8244
 };
 function retrieveMapData(){
 	$.ajax({
@@ -65,16 +53,18 @@ function retrieveMapData(){
 	});
 }
 
-function checkForUpdate(){
-	console.log("Update");
-	$.ajax({
-		type: "GET",
-		url: "api/data/update",
-		success: function(data){
-			console.log(JSON.parse(data));
-		}
+$(document).ready(function(){
+	$("#sidebarButton").on("click",function(){
+		toggleID("sidebar");
+		if(document.getElementById("arrowIcon").innerHTML=="keyboard_arrow_left")
+			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_right";
+		else
+			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_left";
+		setTimeout(function(){
+			google.maps.event.trigger(map, 'resize');
+		}, 500);
 	});
-}
+});
 
 function toggleID(id){
 	$("#"+id).animate({width:'toggle'},350);
