@@ -102,11 +102,20 @@ a .fa-twitter{
 
 #twitterContainer{
 	flex-basis:45%;
-	overflow-y:scroll;
+	overflow-y: hidden;
+	background-color: black;
+	border-top: 1px solid #50b2f4;
+	border-bottom: 1px solid #50b2f4;
+}
+::-webkit-scrollbar {
+	background-color: #424242;
+}
+::-webkit-scrollbar-thumb {
+    background: #50b2f4;
 }
 
 #infoContainer{
-	background:#ffffff;
+	background:black;
 	flex-grow:1;
 	display:flex;
 	flex-direction:column;
@@ -118,15 +127,16 @@ a .fa-twitter{
 }
 
 .unit{
-	color:#bcbcbc;
+	color:#50b2f4;
 }
 
 .kard{
+	color: white;
 	flex-grow:1;
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	background:#ffffff;
+	background:black;
 }
 
 .kard p{
@@ -134,5 +144,5 @@ a .fa-twitter{
 	padding:5% 0%;
 	width:90%;
 	text-align:center;
-	border-bottom: 1px solid rgba(0,0,0,.12);
+	border-bottom: 1px solid rgba(255,255,255,.2);
 }

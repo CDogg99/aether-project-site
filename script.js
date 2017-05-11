@@ -40,7 +40,13 @@ var mapData = [];
 //Temporary
 mapData[0] = {
 	latitude: 29.7858,
-	longitude: -95.8244
+	longitude: -95.8244,
+	//meters
+	altitude: 500,
+	//Celsius
+	temperature: -32,
+	//mbar
+	pressure: 813.25
 };
 function retrieveMapData(){
 	$.ajax({
@@ -49,11 +55,26 @@ function retrieveMapData(){
 		success: function(data){
 			//mapData = JSON.parse(data);
 			initMap();
+			var recentPoint = mapData[0];
+			$("#position").html("("+ recentPoint.latitude + ", " + recentPoint.longitude + ")");
+			$("#altitude").html(roundToTenth(recentPoint.altitude * 3.28084));
+			$("#temperature").html(roundToTenth(recentPoint.temperature * 1.8 + 32));
+			$("#pressure").html(roundToTenth(recentPoint.pressure * 0.0145038));
 		}
 	});
 }
 
 $(document).ready(function(){
+	$("#twitterContainer").hover(
+		//enter
+		function(){
+			$(this).css("overflow-y","scroll");
+		},
+		//exit
+		function(){
+			$(this).css("overflow-y","hidden");
+		}
+	);
 	$("#sidebarButton").on("click",function(){
 		toggleID("sidebar");
 		if(document.getElementById("arrowIcon").innerHTML=="keyboard_arrow_left")
@@ -68,4 +89,8 @@ $(document).ready(function(){
 
 function toggleID(id){
 	$("#"+id).animate({width:'toggle'},350);
+}
+
+function roundToTenth(x){
+	return Math.max(Math.round(x * 10) / 10);
 }
