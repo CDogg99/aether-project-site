@@ -76,13 +76,33 @@ $(document).ready(function(){
 			$(this).css("overflow-y","hidden");
 		}
 	);*/
+	$("#sidebar").css("display","none");
+	//Kind of a ratchet solution, but I don't know when twitter is done loading
+	setTimeout(function(){
+		$("#sidebar").css("display","flex");
+		document.getElementById("arrowIcon").innerHTML="keyboard_arrow_right";
+		toggleID("sidebar",true,0);
+		if($(window).width()<700){
+		document.getElementById("arrowIcon").innerHTML="keyboard_arrow_right";
+		toggleID("sidebar",true,0);
+		}else{
+			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_left";
+			toggleID("sidebar",false,550);
+		}
+	},2000);
+	$( window ).resize(function() {
+		if($(window).width()<700){
+		document.getElementById("arrowIcon").innerHTML="keyboard_arrow_right";
+		toggleID("sidebar",true,0);
+	}
+	});
 	$("#sidebarButton").on("click",function(){
 		if(document.getElementById("arrowIcon").innerHTML=="keyboard_arrow_left"){
 			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_right";
-			toggleID("sidebar",true);
+			toggleID("sidebar",true,350);
 		}else{
 			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_left";
-			toggleID("sidebar",false);
+			toggleID("sidebar",false,350);
 		}
 		/*setTimeout(function(){
 			google.maps.event.trigger(map, 'resize');
@@ -90,11 +110,11 @@ $(document).ready(function(){
 	});
 });
 
-function toggleID(id, left){
+function toggleID(id, left, speed){
 	if(left)
-		$("#"+id).animate({left:'-'+$("#"+id).width()+"px"},350);
+		$("#"+id).animate({left:'-'+$("#"+id).width()+"px"},speed);
 	else
-		$("#"+id).animate({left:"0px"},350);
+		$("#"+id).animate({left:"0px"},speed);
 }
 
 function roundToTenth(x){
