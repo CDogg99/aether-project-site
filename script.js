@@ -65,7 +65,8 @@ function retrieveMapData(){
 }
 
 $(document).ready(function(){
-	$("#twitterContainer").hover(
+	//This looks bad
+	/*$("#twitterContainer").hover(
 		//enter
 		function(){
 			$(this).css("overflow-y","scroll");
@@ -74,21 +75,26 @@ $(document).ready(function(){
 		function(){
 			$(this).css("overflow-y","hidden");
 		}
-	);
+	);*/
 	$("#sidebarButton").on("click",function(){
-		toggleID("sidebar");
-		if(document.getElementById("arrowIcon").innerHTML=="keyboard_arrow_left")
+		if(document.getElementById("arrowIcon").innerHTML=="keyboard_arrow_left"){
 			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_right";
-		else
+			toggleID("sidebar",true);
+		}else{
 			document.getElementById("arrowIcon").innerHTML="keyboard_arrow_left";
-		setTimeout(function(){
+			toggleID("sidebar",false);
+		}
+		/*setTimeout(function(){
 			google.maps.event.trigger(map, 'resize');
-		}, 500);
+		}, 500);*/
 	});
 });
 
-function toggleID(id){
-	$("#"+id).animate({width:'toggle'},350);
+function toggleID(id, left){
+	if(left)
+		$("#"+id).animate({left:'-'+$("#"+id).width()+"px"},350);
+	else
+		$("#"+id).animate({left:"0px"},350);
 }
 
 function roundToTenth(x){
