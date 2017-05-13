@@ -1,0 +1,26 @@
+{
+    "command": "get",
+    "result": "ok",
+    "what": "wx",
+    "found": 1,
+    "entries": [
+        {
+            "name": "OH2TI",
+            "time": "1270580978",
+            "temp": "2.8",
+            "pressure": "1022.1",
+			"humidity": "88",
+            "wind_direction": "270",
+            "wind_speed": "2.7"
+        },
+        {
+            "name": "OH2TI",
+            "time": "1270580979",
+            "temp": "2.8",
+            "pressure": "1022.1",
+			"humidity": "88",
+            "wind_direction": "270",
+            "wind_speed": "2.7"
+        }
+    ]
+}

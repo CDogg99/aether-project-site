@@ -119,9 +119,12 @@ a .fa-twitter{
 }
 
 #twitterContainer{
+	max-height: 40%;
 	overflow-y: scroll;
 	background-color: black;
+	color: white;
 }
+
 ::-webkit-scrollbar {
 	background-color: #424242;
 }

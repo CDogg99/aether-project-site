@@ -16,9 +16,8 @@
     $config['db']['server'] = "localhost";
     $config['db']['username'] = "root";
     $config['db']['password'] = "";
-    $config['db']['dbname'] = "aether";
+    $config['db']['dbname'] = "aether_project";
 
-    //Never push with the following variables filled
     $config['twitter']['consumer_key'] = "YlBJJfYG1iFEBB9UITMLZAEC1";
     $config['twitter']['consumer_secret'] = "5bTHZCA5WjMyIlaFpyFwvx6iMGuLLG9qa3IRxg1hCj9e363Orf";
     $config['twitter']['access_token'] = "821437608316325888-VCW7QVvDZorhslL2GzPA4hf0GH9Jw4v";
@@ -48,9 +47,39 @@
            return "Failed to connect to the database.";
        }
        return $connection;
-   };
+    };
 
-    $app->get('/data/update',function(Request $request, Response $response){
+    $app->get('/data/location',function(Request $request, Response $response){
+        $dbConn = $this->db;
+        if(is_string($dbConn)){
+            if(strpos($dbConn, "Failed") >= 0){
+                $response->getBody()->write(json_encode($dbConn));
+                return $response;
+            }
+        }
+        
+        $data = new Data();
+        $data->dbConn = $dbConn;
+        $response->getBody()->write(json_encode($data->retrieve("location")));
+        return $response;
+    });
+
+    $app->get('/data/weather',function(Request $request, Response $response){
+        $dbConn = $this->db;
+        if(is_string($dbConn)){
+            if(strpos($dbConn, "Failed") >= 0){
+                $response->getBody()->write(json_encode($dbConn));
+                return $response;
+            }
+        }
+
+        $data = new Data();
+        $data->dbConn = $dbConn;
+        $response->getBody()->write(json_encode($data->retrieve("weather")));
+        return $response;
+    });
+
+    $app->get('/tweets/recent',function(Request $request, Response $response){
         $twitConn = $this->twitter;
         if($twitConn == "Failed to connect to Twitter API."){
             $response->getBody()->write(json_encode($twitConn));
@@ -63,24 +92,11 @@
                 return $response;
             }
         }
-        $tweet = new Tweets();
-        $tweet->twitterConn = $twitConn;
-        $tweet->dbConn = $dbConn;
-        $response->getBody()->write(json_encode("tmp1"));
-        return $response;
-    });
 
-    $app->get('/data',function(Request $request, Response $response){
-        $dbConn = $this->db;
-        if(is_string($dbConn)){
-            if(strpos($dbConn, "Failed") >= 0){
-                $response->getBody()->write(json_encode($dbConn));
-                return $response;
-            }
-        }
-        $data = new Data();
-        $data->dbConn = $dbConn;
-        $response->getBody()->write(json_encode($data->retrieve()));
+        $tweets = new Tweets();
+        $tweets->twitterConn = $twitConn;
+        $tweets->dbConn = $dbConn;
+        $response->getBody()->write(json_encode($tweets->getRecentTweet()));
         return $response;
     });
 
