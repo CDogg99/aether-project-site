@@ -6,6 +6,20 @@ html, body{
 	height:100%;
 }
 
+#links{
+	background-color: black;
+	text-align: center;
+}
+
+#links a{
+	color: white;
+	text-decoration: none;
+}
+#links a:hover{
+	color: #50b2f4;
+	text-decoration: underline;
+}
+
 a .fa-twitter{
 	display: none;
 	margin-left: 5px;
