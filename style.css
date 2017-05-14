@@ -38,6 +38,7 @@ a .fa-twitter{
 	font-size:85%;
 	font-weight:bold;
 	padding: 0px 1%;
+	margin-bottom:2%;
 }
 #atName{
 		font-size:90%;
@@ -56,9 +57,12 @@ a .fa-twitter{
 	background:white;
 	margin: 0px 0.5%;
 	background-size: cover;
+	position:relative;
 	background-repeat: no-repeat;
 	background-position: center center;
 }
+
+
 
 .twitterImg img{
 	height:100%;
@@ -200,4 +204,16 @@ a .fa-twitter{
 	width:95%;
 	text-align:center;
 	border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+@keyframes slidein {
+  from {
+    width: 100%; 
+	height:100%;
+  }
+
+  to {
+    width: 250%;
+	height:250%;
+  }
 }

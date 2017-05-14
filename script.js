@@ -112,9 +112,12 @@ $(document).ready(function () {
 
 			message = message.substring(0, message.indexOf("http") - 1);
 			$("#twitterText").html(message);
+			$("#cheek").html("");
 			for(var i = 0; i < media.length; i++){
-			 	var li = $("<div class='twitterImg' style='background-image:url("+'"'+media[i]+'"'+")'></div>");//.append($("<img src='" + media[i] + "'>"));
+				var afterElement="#tweetImg"+i+":hover:after{position:absolute;animation-duration: 0.7s;animation-name: slidein;left:0px;animation-fill-mode:forwards;height:100%;border-radius:5px;width:100%;content: '';background-image:url("+'"'+media[i]+'"'+");z-index:400;background-size: cover;background-repeat: no-repeat;background-position: center center;}";
+			 	var li = $("<div id='tweetImg"+i+"' class='twitterImg' style='background-image:url("+'"'+media[i]+'"'+");'></div>");//.append($("<img src='" + media[i] + "'>"));
 			 	$("#twitterImages").append(li);
+				$("#cheek").append(afterElement);
 			}
 		}
 	});
