@@ -114,7 +114,8 @@ $(document).ready(function () {
 			$("#twitterText").html(message);
 			$("#cheek").html("");
 			for(var i = 0; i < media.length; i++){
-				var afterElement="#tweetImg"+i+":hover:after{position:absolute;animation-duration: 0.7s;animation-name: slidein;left:0px;animation-fill-mode:forwards;height:100%;border-radius:5px;width:100%;content: '';background-image:url("+'"'+media[i]+'"'+");z-index:400;background-size: cover;background-repeat: no-repeat;background-position: center center;}";
+				var afterElement="#tweetImg"+i+":hover:after{box-shadow: 0 0 20px rgba(0,0,0,0.3);animation-duration: 0.5s;animation-name: slidein;animation-fill-mode:forwards;position:absolute;left:0px;height:100%;border-radius:5px;width:100%;content: '';background-image:url("+'"'+media[i]+'"'+");z-index:400;background-size: cover;background-repeat: no-repeat;background-position: center center;}";
+				afterElement+="#tweetImg"+i+":after{height:0%;width:0%}"
 			 	var li = $("<div id='tweetImg"+i+"' class='twitterImg' style='background-image:url("+'"'+media[i]+'"'+");'></div>");//.append($("<img src='" + media[i] + "'>"));
 			 	$("#twitterImages").append(li);
 				$("#cheek").append(afterElement);

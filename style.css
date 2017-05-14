@@ -98,14 +98,20 @@ a .fa-twitter{
 
 	#sidebar{
 		height: 40%;
+		max-width:50% !important;
 	}
 
+	.kard p{
+		font-size:6.25vw !important;
+	}
+	
 	#sidebar #twitterContainer{
 		display: none;
 	}
 
 	#logo .imgContainer{
-		flex-basis: 10%;
+		flex-basis: 20%;
+		min-width:10vw;
 	}
 }
 
@@ -203,6 +209,7 @@ a .fa-twitter{
 	padding:5% 0%;
 	width:95%;
 	text-align:center;
+	font-size:2.5vw;
 	border-bottom: 1px solid rgba(255,255,255,.2);
 }
 
