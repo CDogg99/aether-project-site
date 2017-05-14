@@ -2,6 +2,7 @@ html, body{
     font-family: "Roboto", sans-serif;
 	display:flex;
 	margin:0;
+	font-weight:900;
 	width:100%;
 	height:100%;
 }
@@ -24,6 +25,43 @@ a .fa-twitter{
 	display: none;
 	margin-left: 5px;
 	color: #1da1f2;
+}
+
+#twitterImages{
+	display:flex;
+	flex-flow:row wrap;
+	padding:0.5%;
+	justify-content:center;
+}
+
+#accName{
+	font-size:85%;
+	font-weight:bold;
+	padding: 0px 1%;
+}
+#atName{
+		font-size:90%;
+		margin-bottom:10px;
+		color:#dedede;
+}
+#twitterText{
+	font-size:85%;
+	font-weight:300;
+	padding: 0px 1%;
+}
+.twitterImg{
+	border-radius:5px;
+	height:8.5vw;
+	width:8.5vw;
+	background:white;
+	margin: 0px 0.5%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.twitterImg img{
+	height:100%;
 }
 
 #logo .imgContainer{
@@ -76,6 +114,7 @@ a .fa-twitter{
 	box-shadow: 0 0 20px rgba(0,0,0,0.3);
 	z-index:20;
 	min-width: 20%;
+	max-width:20%;
 }
 
 #sidebarButton{
@@ -119,8 +158,6 @@ a .fa-twitter{
 }
 
 #twitterContainer{
-	max-height: 40%;
-	overflow-y: scroll;
 	background-color: black;
 	color: white;
 }

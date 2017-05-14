@@ -112,10 +112,10 @@ $(document).ready(function () {
 
 			message = message.substring(0, message.indexOf("http") - 1);
 			$("#twitterText").html(message);
-			// for(var i = 0; i < media.length; i++){
-			// 	var li = $("<li></li>").append($("<img src='" + media[i] + "'>"));
-			// 	$("#twitterImages").append(li);
-			// }
+			for(var i = 0; i < media.length; i++){
+			 	var li = $("<div class='twitterImg' style='background-image:url("+'"'+media[i]+'"'+")'></div>");//.append($("<img src='" + media[i] + "'>"));
+			 	$("#twitterImages").append(li);
+			}
 		}
 	});
 });
