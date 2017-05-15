@@ -47,6 +47,13 @@ function retrieveData() {
 		url: "api/data/location",
 		success: function (data) {
 			locationData = JSON.parse(data);
+			//If no data, center on THS
+			if(locationData.length === 0){
+				locationData[0] = {
+					latitude: 29.776649,
+					longitude: -95.730943
+				};
+			}
 			initMap();
 			$("#position").html("(" + locationData[0].latitude + ", " + locationData[0].longitude + ")");
 			for (var i = 0; i < locationData.length; i++) {
