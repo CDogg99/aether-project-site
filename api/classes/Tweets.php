@@ -7,27 +7,25 @@
         public $dbConn = null;
 
         function getRecentTweet(){
-            $sql = "SELECT * FROM tweets ORDER BY creation DESC";
-            $result = $this->dbConn->query($sql);
-            if($result->num_rows > 0){
-                $timestamp = strtotime($result->fetch_assoc()["creation"]);
-                $datetimeOfRecent = new DateTime(date("Y-m-d H:i:s",$timestamp));
-                $currentTime = new DateTime(date("Y-m-d H:i:s"));
-                $diff = $datetimeOfRecent->diff($currentTime);
-                if($diff->i >= 2){
-                    $this->saveRecentTweet();
-                }
-            }
-            else{
-                $this->saveRecentTweet();
-            }
+            //Check if enough time has passed to pull from APIs again
+            $sources = new Sources();
+            $sources->dbConn = $this->dbConn;
+            $sources->twitterConn = $this->twitterConn;
+            $sources->checkForUpdate();
+
             $sql = "SELECT * FROM tweets ORDER BY id DESC";
             $result = $this->dbConn->query($sql);
+            if($result->num_rows == 0){
+                return;
+            }
             return $result->fetch_assoc();
         }
 
         function saveRecentTweet(){
                 $response = $this->twitterConn->get("statuses/home_timeline", ["count" => 1, "exclude_replies" => true]);
+                if(isset($response->errors)){
+                    return;
+                }
                 $tweet = $response[0];
                 //Tweet has images/video
                 if(isset($tweet->entities->media)){

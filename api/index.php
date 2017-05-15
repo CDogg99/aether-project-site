@@ -50,6 +50,11 @@
     };
 
     $app->get('/data/location',function(Request $request, Response $response){
+        $twitConn = $this->twitter;
+        if($twitConn == "Failed to connect to Twitter API."){
+            $response->getBody()->write(json_encode($twitConn));
+            return $response;
+        }
         $dbConn = $this->db;
         if(is_string($dbConn)){
             if(strpos($dbConn, "Failed") >= 0){
@@ -60,11 +65,17 @@
         
         $data = new Data();
         $data->dbConn = $dbConn;
+        $data->twitterConn = $twitConn;
         $response->getBody()->write(json_encode($data->retrieve("location")));
         return $response;
     });
 
     $app->get('/data/weather',function(Request $request, Response $response){
+        $twitConn = $this->twitter;
+        if($twitConn == "Failed to connect to Twitter API."){
+            $response->getBody()->write(json_encode($twitConn));
+            return $response;
+        }
         $dbConn = $this->db;
         if(is_string($dbConn)){
             if(strpos($dbConn, "Failed") >= 0){
@@ -75,6 +86,7 @@
 
         $data = new Data();
         $data->dbConn = $dbConn;
+        $data->twitterConn = $twitConn;
         $response->getBody()->write(json_encode($data->retrieve("weather")));
         return $response;
     });
@@ -98,6 +110,15 @@
         $tweets->dbConn = $dbConn;
         $response->getBody()->write(json_encode($tweets->getRecentTweet()));
         return $response;
+    });
+
+    $app->get("/tweets/test", function(Request $request, Response $response){
+        $twitConn = $this->twitter;
+        if($twitConn == "Failed to connect to Twitter API."){
+            $response->getBody()->write(json_encode($twitConn));
+            return $response;
+        }
+        return json_encode($twitConn->get("application/rate_limit_status", ["resources" => "statuses,application"]));
     });
 
     $app->run();

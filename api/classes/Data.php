@@ -3,12 +3,14 @@
     class Data{
 
         //Connections
+        public $twitterConn = null;
         public $dbConn = null;
 
         function retrieve($toRetrieve){
             //Check if enough time has passed to pull from APIs again
             $sources = new Sources();
             $sources->dbConn = $this->dbConn;
+            $sources->twitterConn = $this->twitterConn;
             $sources->checkForUpdate();
 
             if($toRetrieve == "location"){
@@ -52,6 +54,9 @@
                 if(!$result){
                     return;
                 }
+                if($result->num_rows == 0){
+                    return;
+                }
                 $aprsArray = array();
                 while($r = $result->fetch_assoc()){
                     $aprsArray[] = $r;
@@ -61,9 +66,9 @@
         }
 
         function pullSpotTraceData(){
-            $data = file_get_contents('https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/1aHCJxvC2zDtW2JabdY7coIjy4VbsxY8r/message.json?feedPassword=megatron');
+            //$data = file_get_contents('https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/1aHCJxvC2zDtW2JabdY7coIjy4VbsxY8r/message.json?feedPassword=megatron');
             //Testing purposes
-            //$data = file_get_contents("tmp/spottrace.json");
+            $data = file_get_contents("tmp/spottrace.json");
             $data = json_decode($data);
             if(isset($data->response->errors)){
                 return;
@@ -79,9 +84,9 @@
 
         function pullAPRSData(){
             //Pull location data
-            $data = file_get_contents('https://api.aprs.fi/api/get?name=KG5SUA&what=loc&apikey=99821.h3iiSoUWZxDLvZz&format=json');
+            //$data = file_get_contents('https://api.aprs.fi/api/get?name=KG5SUA&what=loc&apikey=99821.h3iiSoUWZxDLvZz&format=json');
             //Testing purposes
-            //$data = file_get_contents("tmp/aprs_loc.json");
+            $data = file_get_contents("tmp/aprs_loc.json");
             $data = json_decode($data);
             if($data->result == "fail"){
                 return json_encode("Failure");
@@ -94,9 +99,9 @@
             }
 
             //Pull weather data
-            $data = file_get_contents('https://api.aprs.fi/api/get?name=KG5SUA&what=wx&apikey=99821.h3iiSoUWZxDLvZz&format=json');
+            //$data = file_get_contents('https://api.aprs.fi/api/get?name=KG5SUA&what=wx&apikey=99821.h3iiSoUWZxDLvZz&format=json');
             //Testing purposes
-            //$data = file_get_contents("tmp/aprs_wx.json");
+            $data = file_get_contents("tmp/aprs_wx.json");
             $data = json_decode($data);
             if($data->result == "fail"){
                 return json_encode("Failure");
