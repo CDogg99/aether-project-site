@@ -213,8 +213,6 @@ function updateData(){
 }
 
 $(document).ready(function () {
-	$("#sidebar").css("display", "none");
-	//Kind of a ratchet solution, but I don't know when twitter is done loading
 	$("#sidebar").css("display", "flex");
 	document.getElementById("arrowIcon").innerHTML = "keyboard_arrow_right";
 	toggleID("sidebar", true, 0);
