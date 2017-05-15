@@ -215,18 +215,16 @@ function updateData(){
 $(document).ready(function () {
 	$("#sidebar").css("display", "none");
 	//Kind of a ratchet solution, but I don't know when twitter is done loading
-	setTimeout(function () {
-		$("#sidebar").css("display", "flex");
+	$("#sidebar").css("display", "flex");
+	document.getElementById("arrowIcon").innerHTML = "keyboard_arrow_right";
+	toggleID("sidebar", true, 0);
+	if ($(window).width() < 700) {
 		document.getElementById("arrowIcon").innerHTML = "keyboard_arrow_right";
 		toggleID("sidebar", true, 0);
-		if ($(window).width() < 700) {
-			document.getElementById("arrowIcon").innerHTML = "keyboard_arrow_right";
-			toggleID("sidebar", true, 0);
-		} else {
-			document.getElementById("arrowIcon").innerHTML = "keyboard_arrow_left";
-			toggleID("sidebar", false, 550);
-		}
-	}, 2000);
+	} else {
+		document.getElementById("arrowIcon").innerHTML = "keyboard_arrow_left";
+		toggleID("sidebar", false, 550);
+	}
 	$(window).resize(function () {
 		if ($(window).width() < 700) {
 			document.getElementById("arrowIcon").innerHTML = "keyboard_arrow_right";
