@@ -18,10 +18,10 @@
     $config['db']['password'] = "";
     $config['db']['dbname'] = "aether_project";
 
-    $config['twitter']['consumer_key'] = "YlBJJfYG1iFEBB9UITMLZAEC1";
-    $config['twitter']['consumer_secret'] = "5bTHZCA5WjMyIlaFpyFwvx6iMGuLLG9qa3IRxg1hCj9e363Orf";
-    $config['twitter']['access_token'] = "821437608316325888-VCW7QVvDZorhslL2GzPA4hf0GH9Jw4v";
-    $config['twitter']['access_token_secret'] = "DidYjUg3fvcVIxkNYMtiSfRRwcoTGEDuoj38BTjA8v8xh";
+    $config['twitter']['consumer_key'] = "";
+    $config['twitter']['consumer_secret'] = "";
+    $config['twitter']['access_token'] = "";
+    $config['twitter']['access_token_secret'] = "";
 
     $app = new \Slim\App(["settings" => $config]);
 
