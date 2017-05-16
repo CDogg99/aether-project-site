@@ -112,14 +112,5 @@
         return $response;
     });
 
-    $app->get("/tweets/test", function(Request $request, Response $response){
-        $twitConn = $this->twitter;
-        if($twitConn == "Failed to connect to Twitter API."){
-            $response->getBody()->write(json_encode($twitConn));
-            return $response;
-        }
-        return json_encode($twitConn->get("application/rate_limit_status", ["resources" => "statuses,application"]));
-    });
-
     $app->run();
 ?>
