@@ -1,0 +1,268 @@
+[
+    {
+        "unix_time": "1495035677",
+        "latitude": "29.48767",
+        "longitude": "-96.93433",
+        "altitude": "2189.988",
+        "creation": "2017-05-17 15:41:32"
+    },
+    {
+        "unix_time": "1495037109",
+        "latitude": "29.66833",
+        "longitude": "-96.60433",
+        "altitude": "11105.388",
+        "creation": "2017-05-17 16:05:50"
+    },
+    {
+        "unix_time": "1495037289",
+        "latitude": "29.69967",
+        "longitude": "-96.52500",
+        "altitude": "12334.3416",
+        "creation": "2017-05-17 16:08:52"
+    },
+    {
+        "unix_time": "1495037469",
+        "latitude": "29.73233",
+        "longitude": "-96.44900",
+        "altitude": "13443.5088",
+        "creation": "2017-05-17 16:11:53"
+    },
+    {
+        "unix_time": "1495037649",
+        "latitude": "29.76167",
+        "longitude": "-96.38067",
+        "altitude": "14487.4488",
+        "creation": "2017-05-17 16:14:55"
+    },
+    {
+        "unix_time": "1495037769",
+        "latitude": "29.76733",
+        "longitude": "-96.35067",
+        "altitude": "14867.5344",
+        "creation": "2017-05-17 16:17:56"
+    },
+    {
+        "unix_time": "1495038009",
+        "latitude": "29.81850",
+        "longitude": "-96.28700",
+        "altitude": "16814.5968",
+        "creation": "2017-05-17 16:20:58"
+    },
+    {
+        "unix_time": "1495038129",
+        "latitude": "29.82300",
+        "longitude": "-96.25717",
+        "altitude": "17262.6528",
+        "creation": "2017-05-17 16:24:00"
+    },
+    {
+        "unix_time": "1495038369",
+        "latitude": "29.83383",
+        "longitude": "-96.23950",
+        "altitude": "18723.864",
+        "creation": "2017-05-17 16:27:02"
+    },
+    {
+        "unix_time": "1495038429",
+        "latitude": "29.83383",
+        "longitude": "-96.23900",
+        "altitude": "18727.8264",
+        "creation": "2017-05-17 16:30:05"
+    },
+    {
+        "unix_time": "1495039149",
+        "latitude": "29.87633",
+        "longitude": "-96.25450",
+        "altitude": "23401.9344",
+        "creation": "2017-05-17 16:39:10"
+    },
+    {
+        "unix_time": "1495039329",
+        "latitude": "29.87650",
+        "longitude": "-96.26050",
+        "altitude": "24494.0328",
+        "creation": "2017-05-17 16:42:14"
+    },
+    {
+        "unix_time": "1495039509",
+        "latitude": "29.86800",
+        "longitude": "-96.27750",
+        "altitude": "25589.1792",
+        "creation": "2017-05-17 16:45:15"
+    },
+    {
+        "unix_time": "1495039689",
+        "latitude": "29.87883",
+        "longitude": "-96.30067",
+        "altitude": "26708.1",
+        "creation": "2017-05-17 16:48:15"
+    },
+    {
+        "unix_time": "1495039869",
+        "latitude": "29.88367",
+        "longitude": "-96.31550",
+        "altitude": "27846.2232",
+        "creation": "2017-05-17 16:51:16"
+    },
+    {
+        "unix_time": "1495040049",
+        "latitude": "29.88033",
+        "longitude": "-96.33683",
+        "altitude": "29052.3168",
+        "creation": "2017-05-17 16:54:16"
+    },
+    {
+        "unix_time": "1495040229",
+        "latitude": "29.87200",
+        "longitude": "-96.36533",
+        "altitude": "30236.4648",
+        "creation": "2017-05-17 16:57:17"
+    },
+    {
+        "unix_time": "1495040409",
+        "latitude": "29.86567",
+        "longitude": "-96.39933",
+        "altitude": "31464.504",
+        "creation": "2017-05-17 17:00:18"
+    },
+    {
+        "unix_time": "1495040589",
+        "latitude": "29.87033",
+        "longitude": "-96.43133",
+        "altitude": "32632.4976",
+        "creation": "2017-05-17 17:03:19"
+    },
+    {
+        "unix_time": "1495040769",
+        "latitude": "29.87867",
+        "longitude": "-96.46000",
+        "altitude": "29470.1976",
+        "creation": "2017-05-17 17:06:20"
+    },
+    {
+        "unix_time": "1495040949",
+        "latitude": "29.88067",
+        "longitude": "-96.47517",
+        "altitude": "23333.0496",
+        "creation": "2017-05-17 17:09:20"
+    },
+    {
+        "unix_time": "1495041129",
+        "latitude": "29.88900",
+        "longitude": "-96.47700",
+        "altitude": "19304.8128",
+        "creation": "2017-05-17 17:12:21"
+    },
+    {
+        "unix_time": "1495041309",
+        "latitude": "29.90017",
+        "longitude": "-96.45433",
+        "altitude": "16150.7424",
+        "creation": "2017-05-17 17:15:23"
+    },
+    {
+        "unix_time": "1495041429",
+        "latitude": "29.91900",
+        "longitude": "-96.41867",
+        "altitude": "14442.6432",
+        "creation": "2017-05-17 17:17:23"
+    },
+    {
+        "unix_time": "1495041549",
+        "latitude": "29.93983",
+        "longitude": "-96.37083",
+        "altitude": "12909.4992",
+        "creation": "2017-05-17 17:19:24"
+    },
+    {
+        "unix_time": "1495041669",
+        "latitude": "29.96200",
+        "longitude": "-96.31983",
+        "altitude": "11544.3",
+        "creation": "2017-05-17 17:21:24"
+    },
+    {
+        "unix_time": "1495041789",
+        "latitude": "29.98083",
+        "longitude": "-96.26567",
+        "altitude": "10282.428",
+        "creation": "2017-05-17 17:23:24"
+    },
+    {
+        "unix_time": "1495041909",
+        "latitude": "30.00050",
+        "longitude": "-96.21883",
+        "altitude": "9077.2488",
+        "creation": "2017-05-17 17:25:25"
+    },
+    {
+        "unix_time": "1495042029",
+        "latitude": "30.01800",
+        "longitude": "-96.17517",
+        "altitude": "7961.376",
+        "creation": "2017-05-17 17:27:25"
+    },
+    {
+        "unix_time": "1495042149",
+        "latitude": "30.03667",
+        "longitude": "-96.14683",
+        "altitude": "6959.1936",
+        "creation": "2017-05-17 17:29:25"
+    },
+    {
+        "unix_time": "1495042269",
+        "latitude": "30.05417",
+        "longitude": "-96.12100",
+        "altitude": "6021.0192",
+        "creation": "2017-05-17 17:31:25"
+    },
+    {
+        "unix_time": "1495042389",
+        "latitude": "30.07050",
+        "longitude": "-96.10000",
+        "altitude": "5136.1848",
+        "creation": "2017-05-17 17:33:25"
+    },
+    {
+        "unix_time": "1495042509",
+        "latitude": "30.08783",
+        "longitude": "-96.08583",
+        "altitude": "4280.0016",
+        "creation": "2017-05-17 17:35:25"
+    },
+    {
+        "unix_time": "1495042630",
+        "latitude": "30.10567",
+        "longitude": "-96.07733",
+        "altitude": "3475.9392",
+        "creation": "2017-05-17 17:37:27"
+    },
+    {
+        "unix_time": "1495042749",
+        "latitude": "30.11167",
+        "longitude": "-96.06867",
+        "altitude": "2688.9456",
+        "creation": "2017-05-17 17:39:27"
+    },
+    {
+        "unix_time": "1495042869",
+        "latitude": "30.11483",
+        "longitude": "-96.06033",
+        "altitude": "2005.8888",
+        "creation": "2017-05-17 17:41:27"
+    },
+    {
+        "unix_time": "1495042989",
+        "latitude": "30.12667",
+        "longitude": "-96.05333",
+        "altitude": "1286.8656",
+        "creation": "2017-05-17 17:43:27"
+    },
+    {
+        "unix_time": "1495043109",
+        "latitude": "30.13917",
+        "longitude": "-96.05483",
+        "altitude": "613.8672",
+        "creation": "2017-05-17 17:45:27"
+    }
+]

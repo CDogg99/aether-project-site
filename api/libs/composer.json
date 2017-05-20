@@ -1,6 +1,0 @@
-{
-    "require": {
-        "slim/slim": "^3.0",
-        "abraham/twitteroauth": "^0.7.2"
-    }
-}
