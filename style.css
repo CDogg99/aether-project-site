@@ -44,6 +44,10 @@ a.selected{
 	flex-grow:1;
 }
 
+#nav{
+	padding:.75%;
+}
+
 ::-webkit-scrollbar {
 	background-color: #424242;
 }
