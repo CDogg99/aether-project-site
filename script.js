@@ -1,7 +1,7 @@
 var map, initialPosition, finalPosition, path;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('mapContainer'), {
-		zoom: 10,
+		zoom: 12,
 		center: {
 			lat: parseFloat(locationData[0].latitude),
 			lng: parseFloat(locationData[0].longitude)
@@ -16,13 +16,13 @@ function initMap() {
 	//Places marker at last location
 	finalPosition = new google.maps.Marker({
 		position: { lat: parseFloat(locationData[0].latitude), lng: parseFloat(locationData[0].longitude) },
-		title: "Final Position",
+		title: "Landing position",
 		map: map
 	});
 	//Places marker at initial location
 	initialPosition = new google.maps.Marker({
 		position: { lat: parseFloat(locationData[locationData.length-1].latitude), lng: parseFloat(locationData[locationData.length-1].longitude) },
-		title: "Initial Position",
+		title: "Launch position",
 		map: map
 	});
 
@@ -41,8 +41,7 @@ function initMap() {
 	});
 }
 
-var locationData, aprsLocData;
-var speedData;
+var locationData, altitudeData, speedData;
 //Should only be used for initialization
 function retrieveData() {
 	$.getJSON("data/spottrace_location_data.json", function(data){
@@ -51,28 +50,62 @@ function retrieveData() {
 			return b.unix_time - a.unix_time;
 		});
 		initMap();
-		// $.getJSON("data/aprs_location_data.json", function(data){
-		// 	//aprsLocData = data;
-		// 	locationData = spottraceLocData;
-		// 	locationData.sort(function(a, b){
-		// 		return b.unix_time-a.unix_time;
-		// 	});
-		// 	initMap();
-		// });
+	});
+	$.getJSON("data/aprs_location_data.json", function(data){
+		altitudeData = data;
+		altitudeData.sort(function(a, b){
+			return b.unix_time - a.unix_time;
+		});
 	});
 	$.getJSON("data/aprs_speed_data.json", function(data){
 		speedData = data;
+		speedData.sort(function(a, b){
+			return b.unix_time - a.unix_time;
+		});
 	});
 }
 
-$(document).ready(function () {
+var view = null;
+$(document).ready(function(){
+	$("#imageLink").click(function(){
+		if(view !== "images"){
+			view = "images";
+			clearView();
+			$(this).addClass("selected");
+			$("#imageContainer").show();
+		}
+	});
+	$("#videoLink").click(function(){
+		if(view !== "video"){
+			view = "video";
+			clearView();
+			$(this).addClass("selected");
+			$("#videoContainer").show();
+		}
+	});
+	$("#dataLink").click(function(){
+		if(view !== "data"){
+			view = "data";
+			clearView();
+			$(this).addClass("selected");
+			$("#dataContainer").show();
+		}
+	});
+	$("#mapLink").click(function(){
+		if(view !== "map"){
+			view = "map";
+			clearView();
+			$(this).addClass("selected");
+			$("#mapContainer").show();
+			google.maps.event.trigger(map, 'resize');
+			map.setCenter({lat: parseFloat(locationData[0].latitude), lng: parseFloat(locationData[0].longitude)});
+		}
+	});
 });
 
-function toggleID(id, left, speed) {
-	if (left)
-		$("#" + id).animate({ left: '-' + $("#" + id).width() + "px" }, speed);
-	else
-		$("#" + id).animate({ left: "0px" }, speed);
+function clearView(){
+	$("#imageContainer, #videoContainer, #dataContainer, #mapContainer").hide();
+	$("#nav a").removeClass("selected");
 }
 
 function roundToTenth(x) {
