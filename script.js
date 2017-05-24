@@ -88,7 +88,7 @@ $(document).ready(function(){
 			view = "data";
 			clearView();
 			$(this).addClass("selected");
-			$("#dataContainer").show();
+			$("#dataContainer").css("display","flex")
 		}
 	});
 	$("#mapLink").click(function(){
@@ -104,8 +104,27 @@ $(document).ready(function(){
 });
 
 function clearView(){
-	$("#imageContainer, #videoContainer, #dataContainer, #mapContainer").hide();
+	$("#imageContainer, #videoContainer, #dataContainer, #mapContainer").css("display","none")
 	$("#nav a").removeClass("selected");
+}
+
+/*
+Makes a table
+tableContainerID - ID of tableContainer
+colNames - String array of column names
+data - 2D array holding the data you wish to display
+*/
+function loadTable(tableContainerID, colNames, data){
+	if(data==null)
+		data=[];
+	$(tableContainerID).html("");
+	for(i=0;i<colNames.length;i++){
+		var add="<div class='tableCol'><div class='tableHeader'>"+colNames[i]+"</div>";
+		for(j=0;j<data.length;j++)
+			add+="<div class='tableContent'>"+data[j][i]+"</div>";
+		add+="</div>";
+		$(tableContainerID).append(add);
+	}
 }
 
 function roundToTenth(x) {
