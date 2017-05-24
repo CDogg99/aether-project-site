@@ -91,6 +91,33 @@ $(document).ready(function(){
 			$("#dataContainer").css("display","flex")
 		}
 	});
+	$("#locationLink").click(function(){
+		if(view !== "location"){
+			view = "location";
+			clearView();
+			$("#dataLink").addClass("selected");
+			$(this).addClass("selected");
+			$("#dataContainer").show();
+		}
+	});
+	$("#speedLink").click(function(){
+		if(view !== "speed"){
+			view = "speed";
+			clearView();
+			$("#dataLink").addClass("selected");
+			$(this).addClass("selected");
+			$("#dataContainer").show();
+		}
+	});
+	$("#altitudeLink").click(function(){
+		if(view !== "altitude"){
+			view = "altitude";
+			clearView();
+			$("#dataLink").addClass("selected");
+			$(this).addClass("selected");
+			$("#dataContainer").show();
+		}
+	});
 	$("#mapLink").click(function(){
 		if(view !== "map"){
 			view = "map";
@@ -106,6 +133,8 @@ $(document).ready(function(){
 function clearView(){
 	$("#imageContainer, #videoContainer, #dataContainer, #mapContainer").css("display","none")
 	$("#nav a").removeClass("selected");
+	$("#dataNav a").removeClass("selected");
+	$("#dataTable").html("");
 }
 
 /*

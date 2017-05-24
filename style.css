@@ -23,7 +23,7 @@ a.selected{
 	color: #50b2f4;
 }
 
-#nav a{
+#nav a, #dataNav a{
 	padding: 2px 5px;
 }
 
