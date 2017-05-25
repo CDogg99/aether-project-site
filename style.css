@@ -5,6 +5,7 @@ html, body{
 	font-weight:900;
 	width:100%;
 	height:100%;
+	background:black;
 }
 
 #header h1{
@@ -42,6 +43,9 @@ a.selected{
 	font-weight:300;
 	display:flex;
 	flex-flow: row nowrap;
+	justify-content:center;
+	align-self:center;
+	overflow-y:scroll;
 }
 
 .tableHeader{
@@ -61,6 +65,7 @@ a.selected{
 	background:#6E7378;
 	display:flex;
 	flex-flow:column;
+	height:100%;
 }
 
 .tableCol:nth-child(even) {
@@ -72,9 +77,11 @@ a.selected{
 	flex-grow:1;
 }
 #dataContainer{
+	display:flex;
 	flex-direction:column;
-	align-items:center;
+	align-items:stretch;
 	padding:1%;
+	text-align:center;
 }
 
 #mapContainer{
