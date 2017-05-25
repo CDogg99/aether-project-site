@@ -21,7 +21,7 @@ function initMap() {
 	});
 	//Places marker at initial location
 	initialPosition = new google.maps.Marker({
-		position: { lat: parseFloat(locationData[locationData.length-1].latitude), lng: parseFloat(locationData[locationData.length-1].longitude) },
+		position: { lat: parseFloat(locationData[locationData.length - 1].latitude), lng: parseFloat(locationData[locationData.length - 1].longitude) },
 		title: "Launch position",
 		map: map
 	});
@@ -44,94 +44,133 @@ function initMap() {
 var locationData, altitudeData, speedData;
 //Should only be used for initialization
 function retrieveData() {
-	$.getJSON("data/spottrace_location_data.json", function(data){
+	$.getJSON("data/spottrace_location_data.json", function (data) {
 		locationData = data;
-		locationData.sort(function(a, b){
+		locationData.sort(function (a, b) {
 			return b.unix_time - a.unix_time;
 		});
 		initMap();
 	});
-	$.getJSON("data/aprs_location_data.json", function(data){
+	$.getJSON("data/aprs_location_data.json", function (data) {
 		altitudeData = data;
-		altitudeData.sort(function(a, b){
+		altitudeData.sort(function (a, b) {
 			return b.unix_time - a.unix_time;
 		});
 	});
-	$.getJSON("data/aprs_speed_data.json", function(data){
+	$.getJSON("data/aprs_speed_data.json", function (data) {
 		speedData = data;
-		speedData.sort(function(a, b){
+		speedData.sort(function (a, b) {
 			return b.unix_time - a.unix_time;
 		});
 	});
 }
 
 var view = null;
-$(document).ready(function(){
-	$("#imageLink").click(function(){
-		if(view !== "images"){
+$(document).ready(function () {
+	$("#imageLink").click(function () {
+		if (view !== "images") {
 			view = "images";
 			clearView();
 			$(this).addClass("selected");
 			$("#imageContainer").show();
 		}
 	});
-	$("#videoLink").click(function(){
-		if(view !== "video"){
+	$("#videoLink").click(function () {
+		if (view !== "video") {
 			view = "video";
 			clearView();
 			$(this).addClass("selected");
 			$("#videoContainer").show();
 		}
 	});
-	$("#dataLink").click(function(){
-		if(view !== "data"){
+	$("#dataLink").click(function () {
+		if (view !== "data") {
 			view = "data";
 			clearView();
 			$(this).addClass("selected");
-			$("#dataContainer").css("display","flex")
+			$("#dataContainer").css("display", "flex");
 		}
 	});
-	$("#locationLink").click(function(){
-		if(view !== "location"){
+	$("#locationLink").click(function () {
+		if (view !== "location") {
 			view = "location";
 			clearView();
 			$("#dataLink").addClass("selected");
 			$(this).addClass("selected");
 			$("#dataContainer").show();
+			var cols = ["Time (CST)", "Latitude", "Longitude"];
+			var data = [];
+			var time = [];
+			var lat = [];
+			var lng = [];
+			for (var i = 0; i < locationData.length; i++) {
+				var cur = locationData[i];
+				time.push(unixToStr(cur.unix_time));
+				lat.push(cur.latitude);
+				lng.push(cur.longitude);
+			}
+			data[0] = time;
+			data[1] = lat;
+			data[2] = lng;
+			loadTable("#dataTable", cols, data);
 		}
 	});
-	$("#speedLink").click(function(){
-		if(view !== "speed"){
+	$("#speedLink").click(function () {
+		if (view !== "speed") {
 			view = "speed";
 			clearView();
 			$("#dataLink").addClass("selected");
 			$(this).addClass("selected");
 			$("#dataContainer").show();
+			var cols = ["Time (CST)", "Speed (mph)"];
+			var data = [];
+			var time = [];
+			var speed = [];
+			for (var i = 0; i < speedData.length; i++) {
+				var cur = speedData[i];
+				time.push(unixToStr(cur.unix_time));
+				speed.push(roundToTenth(cur.speed * 0.621371));
+			}
+			data[0] = time;
+			data[1] = speed;
+			loadTable("#dataTable", cols, data);
 		}
 	});
-	$("#altitudeLink").click(function(){
-		if(view !== "altitude"){
+	$("#altitudeLink").click(function () {
+		if (view !== "altitude") {
 			view = "altitude";
 			clearView();
 			$("#dataLink").addClass("selected");
 			$(this).addClass("selected");
 			$("#dataContainer").show();
+			var cols = ["Time (CST)", "Altitude (ft)"];
+			var data = [];
+			var time = [];
+			var altitude = [];
+			for (var i = 0; i < altitudeData.length; i++) {
+				var cur = altitudeData[i];
+				time.push(unixToStr(cur.unix_time));
+				altitude.push(roundToTenth(cur.altitude * 3.28084));
+			}
+			data[0] = time;
+			data[1] = altitude;
+			loadTable("#dataTable", cols, data);
 		}
 	});
-	$("#mapLink").click(function(){
-		if(view !== "map"){
+	$("#mapLink").click(function () {
+		if (view !== "map") {
 			view = "map";
 			clearView();
 			$(this).addClass("selected");
 			$("#mapContainer").show();
 			google.maps.event.trigger(map, 'resize');
-			map.setCenter({lat: parseFloat(locationData[0].latitude), lng: parseFloat(locationData[0].longitude)});
+			map.setCenter({ lat: parseFloat(locationData[0].latitude), lng: parseFloat(locationData[0].longitude) });
 		}
 	});
 });
 
-function clearView(){
-	$("#imageContainer, #videoContainer, #dataContainer, #mapContainer").css("display","none")
+function clearView() {
+	$("#imageContainer, #videoContainer, #dataContainer, #mapContainer").css("display", "none");
 	$("#nav a").removeClass("selected");
 	$("#dataNav a").removeClass("selected");
 	$("#dataTable").html("");
@@ -143,19 +182,41 @@ tableContainerID - ID of tableContainer
 colNames - String array of column names
 data - 2D array holding the data you wish to display
 */
-function loadTable(tableContainerID, colNames, data){
-	if(data==null)
-		data=[];
+function loadTable(tableContainerID, colNames, data) {
+	if (data === null)
+		data = [];
 	$(tableContainerID).html("");
-	for(i=0;i<colNames.length;i++){
-		var add="<div class='tableCol'><div class='tableHeader'>"+colNames[i]+"</div>";
-		for(j=0;j<data.length;j++)
-			add+="<div class='tableContent'>"+data[j][i]+"</div>";
-		add+="</div>";
+	for (i = 0; i < colNames.length; i++) {
+		var add = "<div class='tableCol'><div class='tableHeader'>" + colNames[i] + "</div>";
+		for (j = 0; j < data[i].length; j++)
+			add += "<div class='tableContent'>" + data[i][j] + "</div>";
+		add += "</div>";
 		$(tableContainerID).append(add);
 	}
 }
 
 function roundToTenth(x) {
 	return Math.max(Math.round(x * 10) / 10);
+}
+
+function unixToStr(unix_time) {
+	var date = new Date(unix_time * 1000);
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+	var pm = false;
+	var ret = "";
+	if (hours >= 13) {
+		hours -= 12;
+		pm = true;
+	}
+	if (minutes < 10) {
+		minutes = "0" + minutes;
+	}
+	if (pm) {
+		ret = hours + ":" + minutes + " PM";
+	}
+	else {
+		ret = hours + ":" + minutes + " AM";
+	}
+	return ret;
 }
