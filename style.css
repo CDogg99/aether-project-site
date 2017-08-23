@@ -72,10 +72,32 @@ a.selected{
     background: #B0B2B3;
 }
 
+.display-image{
+    object-fit: fill;
+    object-position: center;
+    max-height: 300px;
+    max-width: 300px;
+    height: 300px;
+    width: 300px;
+    margin: 0px 2%;
+}
+
 #imageContainer, #videoContainer, #dataContainer, #mapContainer{
 	display: none;
 	flex-grow:1;
 }
+
+#imageContainer{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 2%;
+    width: 96%;
+    max-width: 96%;
+}
+
+
+
 #dataContainer{
 	display:flex;
 	flex-direction:column;

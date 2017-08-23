@@ -167,6 +167,7 @@ $(document).ready(function () {
 			map.setCenter({ lat: parseFloat(locationData[0].latitude), lng: parseFloat(locationData[0].longitude) });
 		}
 	});
+    $('#imageLink').trigger('click');
 });
 
 function clearView() {
