@@ -45,7 +45,7 @@ a.selected{
 	flex-flow: row nowrap;
 	justify-content:center;
 	align-self:center;
-	overflow-y:scroll;
+	overflow-y:auto;
 }
 
 .tableHeader{

@@ -15,13 +15,13 @@ function initMap() {
 
 	//Places marker at last location
 	finalPosition = new google.maps.Marker({
-		position: { lat: parseFloat(locationData[0].latitude), lng: parseFloat(locationData[0].longitude) },
+		position: { lat: parseFloat(locationData[locationData.length -1].latitude), lng: parseFloat(locationData[locationData.length -1].longitude) },
 		title: "Landing position",
 		map: map
 	});
 	//Places marker at initial location
 	initialPosition = new google.maps.Marker({
-		position: { lat: parseFloat(locationData[locationData.length - 1].latitude), lng: parseFloat(locationData[locationData.length - 1].longitude) },
+		position: { lat: parseFloat(locationData[0].latitude), lng: parseFloat(locationData[0].longitude) },
 		title: "Launch position",
 		map: map
 	});
@@ -47,26 +47,30 @@ function retrieveData() {
 	$.getJSON("data/spottrace_location_data.json", function (data) {
 		locationData = data;
 		locationData.sort(function (a, b) {
-			return b.unix_time - a.unix_time;
+			return a.unix_time - b.unix_time;
 		});
 		initMap();
 	});
 	$.getJSON("data/aprs_location_data.json", function (data) {
 		altitudeData = data;
 		altitudeData.sort(function (a, b) {
-			return b.unix_time - a.unix_time;
+			return a.unix_time - b.unix_time;
 		});
 	});
 	$.getJSON("data/aprs_speed_data.json", function (data) {
 		speedData = data;
 		speedData.sort(function (a, b) {
-			return b.unix_time - a.unix_time;
+			return a.unix_time - b.unix_time;
 		});
 	});
 }
 
 var view = null;
 $(document).ready(function () {
+	for(var i = 1; i <= 12; i++){
+		var imgStr = '<img class="display-image" src="images/balloon/' + i + '.jpg">';
+		$("#imageContainer").append(imgStr);
+	}
 	$("#imageLink").click(function () {
 		if (view !== "images") {
 			view = "images";
@@ -218,6 +222,9 @@ function unixToStr(unix_time) {
 	var ret = "";
 	if (hours >= 13) {
 		hours -= 12;
+		pm = true;
+	}
+	else if(hours == 12){
 		pm = true;
 	}
 	if (minutes < 10) {
