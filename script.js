@@ -89,6 +89,7 @@ $(document).ready(function () {
 			clearView();
 			$(this).addClass("selected");
 			$("#dataContainer").css("display", "flex");
+            $("#locationLink").trigger('click');
 		}
 	});
 	$("#locationLink").click(function () {
@@ -115,6 +116,15 @@ $(document).ready(function () {
 			loadTable("#dataTable", cols, data);
 		}
 	});
+    
+    $(".video-thumbnail").click(function(){
+        $("#playback-container").css("display","flex");
+    });
+    
+    $("#playback-container").click(function(){
+        $("#playback-container").css("display","none");
+    });
+    
 	$("#speedLink").click(function () {
 		if (view !== "speed") {
 			view = "speed";

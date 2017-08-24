@@ -87,16 +87,28 @@ a.selected{
 	flex-grow:1;
 }
 
-#imageContainer{
+#imageContainer, #videoContainer{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    padding: 2%;
-    width: 96%;
-    max-width: 96%;
+    padding: 2% 1%;
+    width: 98%;
+    max-width: 98%;
 }
 
-
+#playback-container{
+    background-color: rgba(0,0,0,.75);
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
+    top:0px;
+    z-index: 20;
+    position: fixed;
+    justify-content: center;
+    align-self: center;
+}
 
 #dataContainer{
 	display:flex;
