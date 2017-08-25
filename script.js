@@ -68,7 +68,7 @@ function retrieveData() {
 var view = null;
 $(document).ready(function () {
 	for(var i = 1; i <= 12; i++){
-		var imgStr = '<img class="display-image" src="images/balloon/' + i + '.jpg">';
+		var imgStr = '<img class="display-image" src="images/balloon/' + i + '.JPG">';
 		$("#imageContainer").append(imgStr);
 	}
 	$("#imageLink").click(function () {
