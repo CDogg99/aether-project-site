@@ -71,6 +71,11 @@ $(document).ready(function () {
 		var imgStr = '<img class="display-image" src="images/balloon/' + i + '.JPG">';
 		$("#imageContainer").append(imgStr);
 	}
+	$("#imageContainer .display-image").on("click", function(){
+		$("#imageContainer .fullscreen").removeClass("fullscreen").addClass("display-image");
+		$(this).toggleClass("fullscreen").toggleClass("display-image");
+		$(this).get(0).scrollIntoView();
+	});
 	$("#imageLink").click(function () {
 		if (view !== "images") {
 			view = "images";
