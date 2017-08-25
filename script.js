@@ -1,4 +1,5 @@
 var map, initialPosition, finalPosition, path;
+var IMAGE_COUNT=12;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('mapContainer'), {
 		zoom: 12,
@@ -65,17 +66,47 @@ function retrieveData() {
 	});
 }
 
+function getNextImage(imgName, dir){
+    var num=parseInt(imgName.replace(/\D/g,""));
+    num+=dir;
+    if(num<=0)
+        num=IMAGE_COUNT;
+    else if(num>IMAGE_COUNT)
+        num=1;
+    return imgName.replace(/\d+/,num);
+}
+
 var view = null;
 $(document).ready(function () {
+    $(document).keydown(function(event){
+        if(event.which===27){
+            $("#fullscreenGallery").css("display","none");
+            $("#imageContainer").css("overflow","auto");
+        }
+    })
 	for(var i = 1; i <= 12; i++){
 		var imgStr = '<img class="display-image" src="images/balloon/' + i + '.JPG">';
 		$("#imageContainer").append(imgStr);
 	}
 	$("#imageContainer .display-image").on("click", function(){
-		$("#imageContainer .fullscreen").removeClass("fullscreen").addClass("display-image");
-		$(this).toggleClass("fullscreen").toggleClass("display-image");
-		$(this).get(0).scrollIntoView();
+        $("#fullscreenImage").attr("src",$(this).attr("src"));
+        $("#fullscreenGallery").css("display","flex");
+        $("#imageContainer").css("overflow","hidden");
 	});
+    $("#fullscreenGallery").click(function(event){
+        if(event.target.getAttribute("id")==="fullscreenGallery"){
+            $("#fullscreenGallery").css("display","none");
+            $("#imageContainer").css("overflow","auto");
+        }
+    });
+    $("#gallery-left").click(function(){
+        var img=$("#fullscreenImage").attr("src");
+        $("#fullscreenImage").attr("src",getNextImage(img,-1));
+    });
+    $("#gallery-right").click(function(){
+        var img=$("#fullscreenImage").attr("src");
+        $("#fullscreenImage").attr("src",getNextImage(img,1));
+    });
 	$("#imageLink").click(function () {
 		if (view !== "images") {
 			view = "images";

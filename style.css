@@ -94,6 +94,33 @@ a.selected{
 	flex-grow:1;
 }
 
+#fullscreenImage{
+    height: 82vmin;
+    width: 108vmin;
+}
+
+#fullscreenGallery .fa{
+    font-size: 150%;
+    margin: 0px 2%;
+    cursor: pointer;
+}
+
+#fullscreenGallery .fa:hover{
+    color: white;
+}
+
+#fullscreenGallery{
+    background: rgba(0,0,0,.85);
+    position: absolute;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
 #homeContainer{
     background-image: url("images/home.JPG");
     position: relative;
