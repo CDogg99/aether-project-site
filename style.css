@@ -24,6 +24,10 @@ a.selected{
 	color: #50b2f4;
 }
 
+#dataNav{
+    padding: 1%;
+}
+
 #nav a, #dataNav a{
 	padding: 2px 5px;
 }
@@ -79,12 +83,48 @@ a.selected{
     max-width: 300px;
     height: 300px;
     width: 300px;
-    margin: 0px 2%;
+    margin: 0.5% .5%;
 }
 
-#imageContainer, #videoContainer, #dataContainer, #mapContainer{
+#imageContainer, #videoContainer, #dataContainer, #mapContainer, #homeContainer{
 	display: none;
 	flex-grow:1;
+}
+
+#homeContainer{
+    background-image: url("images/home.JPG");
+    position: relative;
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#credits{
+    color: black;
+    margin: .5%;
+    font-size: 50%;
+}
+
+#home-text{
+    position: absolute;
+    left:25%;
+    right: 25%;
+    top:20%;
+    z-index: 5;
+    font-weight: 300;
+}
+
+#homeContainer:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+    z-index: 1;
 }
 
 #imageContainer, #videoContainer{
@@ -107,7 +147,7 @@ a.selected{
     z-index: 20;
     position: fixed;
     justify-content: center;
-    align-self: center;
+    align-items: center;
 }
 
 #dataContainer{

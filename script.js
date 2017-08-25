@@ -96,6 +96,13 @@ $(document).ready(function () {
             $("#locationLink").trigger('click');
 		}
 	});
+    $("#homeLink").click(function(){
+        if (view !== "home") {
+			view = "home";
+			clearView();
+			$("#homeContainer").show();
+		}
+    });
 	$("#locationLink").click(function () {
 		if (view !== "location") {
 			view = "location";
@@ -181,11 +188,11 @@ $(document).ready(function () {
 			map.setCenter({ lat: parseFloat(locationData[0].latitude), lng: parseFloat(locationData[0].longitude) });
 		}
 	});
-    $('#imageLink').trigger('click');
+    $('#homeLink').trigger('click');
 });
 
 function clearView() {
-	$("#imageContainer, #videoContainer, #dataContainer, #mapContainer").css("display", "none");
+	$("#imageContainer, #videoContainer, #dataContainer, #mapContainer, #homeContainer").css("display", "none");
 	$("#nav a").removeClass("selected");
 	$("#dataNav a").removeClass("selected");
 	$("#dataTable").html("");
