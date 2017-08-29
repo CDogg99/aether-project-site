@@ -66,6 +66,11 @@ function retrieveData() {
 	});
 }
 
+function galleryMove(dir){
+    var img=$("#fullscreenImage").attr("src");
+    $("#fullscreenImage").attr("src",getNextImage(img,dir));
+}
+
 function getNextImage(imgName, dir){
     var num=parseInt(imgName.replace(/\D/g,""));
     num+=dir;
@@ -82,6 +87,13 @@ $(document).ready(function () {
         if(event.which===27){
             $("#fullscreenGallery").css("display","none");
             $("#imageContainer").css("overflow","auto");
+        }
+        console.log($("#fullscreenGallery").css("display"));
+        if($("#fullscreenGallery").css("display")==="flex"){
+            if(event.which===37)
+                galleryMove(-1);
+            else if(event.which===39)
+                galleryMove(1);
         }
     });
 	for(var i = 1; i <= 12; i++){
@@ -100,12 +112,10 @@ $(document).ready(function () {
         }
     });
     $("#gallery-left").click(function(){
-        var img=$("#fullscreenImage").attr("src");
-        $("#fullscreenImage").attr("src",getNextImage(img,-1));
+        galleryMove(-1);
     });
     $("#gallery-right").click(function(){
-        var img=$("#fullscreenImage").attr("src");
-        $("#fullscreenImage").attr("src",getNextImage(img,1));
+        galleryMove(1);
     });
 	$("#imageLink").click(function () {
 		if (view !== "images") {
