@@ -76,9 +76,15 @@ a.selected{
     background: #B0B2B3;
 }
 
+.focus{
+    color: #93C5C7;
+    font-weight: 900;
+}
+
 .display-image{
     object-fit: fill;
     object-position: center;
+    cursor: pointer;
     max-height: 300px;
     max-width: 400px;
     margin: 0.5% .5%;
@@ -144,6 +150,7 @@ a.selected{
     top:20%;
     z-index: 5;
     font-weight: 300;
+    font-size:115%;
 }
 
 #homeContainer:before{
@@ -153,8 +160,12 @@ a.selected{
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,.25));
     z-index: 1;
+}
+
+.video-thumbnail{
+    cursor: pointer;
 }
 
 #imageContainer, #videoContainer{
