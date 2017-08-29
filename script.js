@@ -87,8 +87,9 @@ $(document).ready(function () {
         if(event.which===27){
             $("#fullscreenGallery").css("display","none");
             $("#imageContainer").css("overflow","auto");
+            $("#playback-container").css("display","none");
+            $("video").get(0).pause();
         }
-        console.log($("#fullscreenGallery").css("display"));
         if($("#fullscreenGallery").css("display")==="flex"){
             if(event.which===37)
                 galleryMove(-1);
@@ -180,7 +181,6 @@ $(document).ready(function () {
     
     $("#playback-container").click(function(){
 		$("#playback-container").css("display","none");
-		console.log("video player closed");
 		$("video").get(0).pause();
     });
     
